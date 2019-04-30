@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Board from "./board/Board.js";
 import "./App.css";
 
@@ -39,17 +39,22 @@ const boardData = [
       colIndex: 2,
       text: "gggDeawfure dolor in reprehenderit in voluptate velit esse"
     }
+  ],
+  [
+    {
+      id: 7,
+      colIndex: 3,
+      text: "Ut enim ad minim veniam, quis nostrud exercitation ullamco"
+    }
   ]
 ];
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <Board boardData={boardData} />
-      </div>
-    );
-  }
-}
+const App = props => {
+  return (
+    <div className="App">
+      <Board boardData={boardData} />
+    </div>
+  );
+};
 
 export default App;

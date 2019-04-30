@@ -1,18 +1,11 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import Card from "./Card.js";
 import "./board.css";
 
-export default class Board extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      boardData: props.boardData
-    };
-    this.onMoveBtnClick = this.onMoveBtnClick.bind(this);
-  }
+const Board = props => {
+  const [boardData, setBoardData] = useState(props.boardData);
 
-  onMoveBtnClick(request) {
-    const { boardData } = this.state;
+  function onMoveBtnClick(request) {
     //remove selcted card
     const updatedData = boardData.map((col, i) => {
       return col.filter((c, i) => {
@@ -26,38 +19,36 @@ export default class Board extends Component {
       colIndex: newColIndex,
       text: request.text
     });
-    this.setState({
-      boardData: updatedData
-    });
+    setBoardData(updatedData);
   }
 
-  renderCols() {
-    const { boardData } = this.state;
+  function renderCols() {
     return boardData.map((col, i) => {
       return (
         <div className="column" key={i}>
-          {this.renderCards(col)}
+          {renderCards(col)}
         </div>
       );
     });
   }
-  renderCards(col) {
-    const { boardData } = this.state;
+
+  function renderCards(col) {
     return col.map((c, i) => {
       return (
         <Card
           key={i}
           colIndex={c.colIndex}
           totolCols={boardData.length}
-          onMoveBtnClick={this.onMoveBtnClick}
+          onMoveBtnClick={onMoveBtnClick}
           cardText={c.text}
           id={c.id}
         />
       );
     });
   }
-  render() {
-    const cols = this.renderCols();
-    return <div className="container">{cols}</div>;
-  }
-}
+
+  const cols = renderCols();
+  return <div className="container">{cols}</div>;
+};
+
+export default Board;
