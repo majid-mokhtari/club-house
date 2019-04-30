@@ -17,7 +17,7 @@ const Board = props => {
     updatedData[newColIndex].push({
       id: request.cardId,
       colIndex: newColIndex,
-      text: request.text
+      content: request.content
     });
     setBoardData(updatedData);
   }
@@ -40,7 +40,7 @@ const Board = props => {
           colIndex={c.colIndex}
           totolCols={boardData.length}
           onMoveBtnClick={onMoveBtnClick}
-          cardText={c.text}
+          content={c.content}
           id={c.id}
         />
       );

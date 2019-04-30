@@ -1,14 +1,14 @@
 import React from "react";
 
 const Card = props => {
-  const { colIndex, id, cardText } = props;
+  const { colIndex, id, content } = props;
 
   function onMoveBtnClick(move) {
     props.onMoveBtnClick({
       colIndex,
       cardId: id,
       move,
-      text: cardText
+      content
     });
   }
 
@@ -27,7 +27,7 @@ const Card = props => {
     return (
       <div className="card-content">
         {leftBtn}
-        {textContent()}
+        <p>{content}</p>
         {rightBtn}
       </div>
     );
@@ -41,12 +41,8 @@ const Card = props => {
     return <button onClick={() => onMoveBtnClick(1)}>Move &#8594;</button>;
   }
 
-  function textContent() {
-    return <p>{props.cardText}</p>;
-  }
-
-  const content = renderContent();
-  return <div className="card">{content}</div>;
+  const cardContent = renderContent();
+  return <div className="card">{cardContent}</div>;
 };
 
 export default Card;
