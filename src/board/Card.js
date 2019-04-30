@@ -1,22 +1,13 @@
 import React from "react";
 
 const Card = props => {
-  function onLeftBtnClick() {
-    const { colIndex, id, cardText } = props;
-    props.onMoveBtnClick({
-      colIndex,
-      cardId: id,
-      move: -1,
-      text: cardText
-    });
-  }
+  const { colIndex, id, cardText } = props;
 
-  function onRightBtnClick() {
-    const { colIndex, id, cardText } = props;
+  function onMoveBtnClick(move) {
     props.onMoveBtnClick({
       colIndex,
       cardId: id,
-      move: 1,
+      move,
       text: cardText
     });
   }
@@ -43,11 +34,11 @@ const Card = props => {
   }
 
   function renderLeftBtn() {
-    return <button onClick={onLeftBtnClick}>&#8592; Move</button>;
+    return <button onClick={() => onMoveBtnClick(-1)}>&#8592; Move</button>;
   }
 
   function renderRightBtn() {
-    return <button onClick={onRightBtnClick}>Move &#8594;</button>;
+    return <button onClick={() => onMoveBtnClick(1)}>Move &#8594;</button>;
   }
 
   function textContent() {
